@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .container {
+        width: 100%;
+        display: flex;
+        padding: 30px;
+        box-sizing: border-box;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #e8e8e8;
+      }
+      .item {
+        height: 80px;
+        background-color: skyblue;
+      }
+      .line {
+        width: 50px;
+        height: 4px;
+        background-color: pink;
+        margin: 0 40px;
+        box-sizing: border-box;
+        transition: transform .3s cubic-bezier(.645,.045,.355,1);
+      }
+      .line::after {
+        content: '';
+        padding: 80px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="item">JavaScript</div>
+      <div class="item">HTML</div>
+      <div class="item">CSS</div>
+    </div>
+    <div class="line"></div>
+  </body>
+</html>
+<script src="./flatObject.js"></script>
+<script>
+  const oLine = document.getElementsByClassName('line')[0]
+  oLine.addEventListener('click', function(event){
+    console.log(event, 'event', event.clientX);
+    oLine.offsetLeft = 2 * event.clientX
+    oLine.style.transform = `translateX(${3*event.clientX}px)`
+    oLine.transition = 'transform .3s cubic-bezier(.645,.045,.355,1)'
+  })
+  console.log(oLine, 'oLine')
+  const left = oLine.offsetLeft,
+        tops = oLine.offsetTop,
+        width = oLine.clientWidth,
+        offset = oLine.offset;
+        console.log(`left: ${left}, top: ${tops}, width: ${width}, offset: ${offset}`)
+
+</script>
+
+<!-- <script src="./main.js"></script> -->
+<!-- <style>
+  .box {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-color: pink;
+    animation: boxScale 5s ease;
+    position: relative;
+  }
+  @keyframes boxScale {
+    0% {
+      transform: scale(1);
+      left: 0;
+    }
+    50% {
+      transform: scale(1.5);
+      left: 200px;
+    }
+    100% {
+      transform: scale(1);
+      left: 0;
+    }
+  }
+</style> -->
+<!-- <script>
+  const list = [
+    "https://ossweb-img.qq.com/upload/adw/image/977/20220112/fcde07f5accac7da8ab59ceaeac48546.jpeg",
+    "https://ossweb-img.qq.com/upload/adw/image/977/20220107/e88d7dae2f753763c940d13ef795af56.jpeg",
+    "https://ossweb-img.qq.com/upload/adw/image/977/20220107/47a44be9c9a38ef77f2f7c2a349c90be.jpeg",
+    "https://ossweb-img.qq.com/upload/adw/image/977/20220112/fcde07f5accac7da8ab59ceaeac48546.jpeg",
+    "https://ossweb-img.qq.com/upload/adw/image/977/20220101/b0f2ef7d103992e703941e99a4108010.jpeg",
+  ];
+  let current = 0;
+  const oBanner = document.getElementsByClassName("img")[0];
+  const changeImgSrc = () => {
+    oBanner.setAttribute("src", list[current]);
+  }
+  const init = () => {
+    changeImgSrc()
+  }
+  init()
+  const pre = document.getElementsByTagName("button")[0];
+  const next = document.getElementsByTagName("button")[1];
+  pre.addEventListener("click", () => {
+    current = current > 0 ? current-1 : list.length - 1;
+    changeImgSrc()
+  });
+  next.addEventListener("click", () => {
+    current = current < list.length - 1 ? current+1 : 0;
+    changeImgSrc()
+  });
+</script> -->
+<!-- <style>
+  .banner {
+    width: 100%;
+    height: 400px;
+  }
+  .img {
+    width: auto;
+    height: 400px;
+    margin: 0 auto;
+  }
+</style> -->
